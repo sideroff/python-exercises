@@ -1,9 +1,10 @@
 from math import sqrt
 
 def main():
-    arm_one = float(input("Arm one length: "))
-    arm_two = float(input("Arm two length: "))
+    line_one = list(map(lambda x: float(x.strip()), input("Line 1 x,y: ").split(",")))
+    line_two = list(map(lambda x: float(x.strip()), input("Line 2 x,y: ").split(",")))
 
-    print("The hypotenuse of a triangle with arm one: %.2f and arm two: %.2f is: %.2f" % (arm_one, arm_two, sqrt(arm_one**2 + arm_two**2) ))
+    mid_point = ((line_one[0] + line_two[0]) / 2, (line_one[1] + line_two[1]) / 2)
 
+    print(mid_point)
 if __name__ == '__main__': main()
