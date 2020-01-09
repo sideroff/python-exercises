@@ -6,7 +6,7 @@ while input_text != 'stop':
     try:
         new_price = float(input_text)
     except:
-        print('Input could not be parsed.')
+        print('Input could not be parsed. Please choose another.')
         continue
 
     prices.append(new_price)
@@ -26,4 +26,4 @@ print('''
 Highest price: %.2f
 Lowest price: %.2f
 Average from rest: %.2f
-''' % (highest, lowest, sum(prices[1:-1])/max(1, len(prices) - 2)))
+''' % (highest, lowest, sum(prices)/max(1, len(prices))))
