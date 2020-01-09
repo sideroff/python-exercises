@@ -1,7 +1,12 @@
+from Crypto.Hash import SHA256
+
 def main():
-    arm_one = float(input("Password: "))
+    password = input("Password: ").encode("UTF-8")
 
+    
+    h = SHA256.new()
+    h.update(password)
 
-    print("Password hash: ")
+    print("Password hash: %s" % (h.hexdigest()))
 
 if __name__ == '__main__': main()
