@@ -60,7 +60,7 @@ known_values = (
     (3999, 'MMMCMXCIX')
 )
 
-bad_types = [
+to_roman_bad_types = [
     None,
     1.0,
     True,
@@ -73,19 +73,93 @@ bad_types = [
     print,
 ]
 
+from_roman_bad_types = [
+    None,
+    1,
+    1.0,
+    True,
+    b"test",
+    [1, 2],
+    (1, 2),
+    {1, 2},
+    {'test': 1},
+    print,
+]
 
-class ToRoman(unittest.TestCase):
+less_than_min = [
+    0,
+    -1,
+    -999999999999999999,
+]
+
+more_than_max = [
+    4000,
+    4001,
+    999999999999999999
+]
+
+
+# class ToRoman(unittest.TestCase):
+#     def test_known_values(self):
+#         '''to_roman should return known output for known input'''
+
+#         for integer, numeral in known_values:
+#             self.assertEqual(to_roman(integer), numeral)
+
+#     def test_bad_type_input(self):
+#         '''to_roman should return TypeError when called with any type != int'''
+
+#         for value in to_roman_bad_types:
+#             self.assertRaises(TypeError, to_roman, value)
+
+#     def test_less_than_min_input(self):
+#         '''to_roman should return ValueError when called with any int <= 0'''
+
+#         for value in less_than_min:
+#             self.assertRaises(ValueError, to_roman, value)
+
+#     def test_greater_than_max_input(self):
+#         '''to_roman should return ValueError when called with any int > 3999'''
+
+#         for value in more_than_max:
+#             self.assertRaises(ValueError, to_roman, value)
+
+
+class FromRoman(unittest.TestCase):
     def test_known_values(self):
-        '''to_roman should return known output for known input'''
+        '''from_roman should return known output for known input'''
 
         for integer, numeral in known_values:
-            self.assertEqual(to_roman(integer), numeral)
+            self.assertEqual(from_roman(numeral), integer)
+
+    # # not a good idea relying on to_roman imo
+    # def test_all_possible_values(self):
+    #     '''from_roman should return valid output for valid input'''
+
+    #     for integer in range(1,4000):
+    #         self.assertEqual(from_roman(to_roman(integer)), integer)
 
     def test_bad_type_input(self):
-        '''to_roman should return TypeException when called with any type != int'''
+        '''from_input should return TypeError when called with any type != str'''
 
-        for value in bad_types:
-            self.assertRaises(TypeError, to_roman, value)
+        for value in from_roman_bad_types:
+            self.assertRaises(TypeError, from_roman, value)
+
+    def test_too_many_repeated_numerals(self):
+        '''from_roman should fail with too many repeated numerals'''
+        for s in ('MMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
+            self.assertRaises(ValueError, from_roman, s)
+
+    def test_repeated_pairs(self):
+        '''from_roman should fail with repeated pairs of numerals'''
+        for s in ('CMCM', 'CDCD', 'XCXC', 'XLXL', 'IXIX', 'IVIV'):
+            self.assertRaises(ValueError, from_roman, s)
+
+    def test_malformed_antecedents(self):
+        '''from_roman should fail with malformed antecedents'''
+        for s in ('IIMXCC', 'VX', 'DCM', 'CMM', 'IXIV',
+                  'MCMC', 'XCX', 'IVI', 'LM', 'LD', 'LC'):
+            self.assertRaises(ValueError, from_roman, s)
 
 
 if __name__ == '__main__':
