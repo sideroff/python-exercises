@@ -57,10 +57,15 @@ known_values = (
     (3844, 'MMMDCCCXLIV'),
     (3888, 'MMMDCCCLXXXVIII'),
     (3940, 'MMMCMXL'),
-    (3999, 'MMMCMXCIX')
+    (3999, 'MMMCMXCIX'),
+    (3999, 'MMMCMXCIX'),
+    (4000, 'MMMM'),
+    (4500, 'MMMMD'),
+    (4888, 'MMMMDCCCLXXXVIII'),
+    (4999, 'MMMMCMXCIX')
 )
 
-to_roman_bad_types = [
+to_roman_bad_types=[
     None,
     1.0,
     True,
@@ -99,8 +104,8 @@ less_than_min = [
 ]
 
 more_than_max = [
-    4000,
-    4001,
+    5000,
+    5001,
     999999999999999999
 ]
 
@@ -125,7 +130,7 @@ more_than_max = [
 #             self.assertRaises(ValueError, to_roman, value)
 
 #     def test_greater_than_max_input(self):
-#         '''to_roman should return ValueError when called with any int > 3999'''
+#         '''to_roman should return ValueError when called with any int > 4999'''
 
 #         for value in more_than_max:
 #             self.assertRaises(ValueError, to_roman, value)
@@ -142,7 +147,7 @@ class FromRoman(unittest.TestCase):
     # def test_all_possible_values(self):
     #     '''from_roman should return valid output for valid input'''
 
-    #     for integer in range(1,4000):
+    #     for integer in range(1,5000):
     #         self.assertEqual(from_roman(to_roman(integer)), integer)
 
     def test_bad_type_input(self):
@@ -150,7 +155,7 @@ class FromRoman(unittest.TestCase):
 
         for value in from_roman_bad_types:
             self.assertRaises(TypeError, from_roman, value)
-    
+
     def test_valid_type_invalid_value_input(self):
         '''from_input should return ValueError when called with any invalid str'''
 
@@ -159,7 +164,7 @@ class FromRoman(unittest.TestCase):
 
     def test_too_many_repeated_numerals(self):
         '''from_roman should fail with too many repeated numerals'''
-        for s in ('MMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
+        for s in ('MMMMM', 'DD', 'CCCC', 'LL', 'XXXX', 'VV', 'IIII'):
             self.assertRaises(ValueError, from_roman, s)
 
     def test_repeated_pairs(self):

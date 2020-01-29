@@ -1,0 +1,15 @@
+The name attribute reflects the name you passed in to the open() 
+function when you opened the file. It is not normalized to an 
+absolute pathname.
+Likewise, encoding attribute reflects the encoding you passed 
+in to the open() function. If you didn’t specify the encoding when 
+you opened the file (bad developer!) then the encoding attribute 
+will reflect locale.getpreferredencoding().
+③	The mode attribute tells you in which mode the file was opened. 
+You can pass an optional mode parameter to the open() function. 
+You didn’t specify a mode when you opened this file, so Python 
+defaults to 'r', which means “open for reading only, in text mode.” 
+As you’ll see later in this chapter, the file mode serves several 
+purposes; different modes let you write to a file, append to a 
+file, or open a file in binary mode (in which you deal with bytes 
+instead of strings).

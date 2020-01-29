@@ -20,7 +20,7 @@ max_possible_integer = 3999
 
 roman_numeral_pattern = re.compile('''
     ^                   # beginning of string
-    M{0,3}              # thousands - 0 to 3 Ms
+    M{0,4}              # thousands - 0 to 3 Ms
     (CM|CD|D?C{0,3})    # hundreds - 900 (CM), 400 (CD), 0-300 (0 to 3 Cs),
                         #            or 500-800 (D, followed by 0 to 3 Cs)
     (XC|XL|L?X{0,3})    # tens - 90 (XC), 40 (XL), 0-30 (0 to 3 Xs),
@@ -38,10 +38,10 @@ def to_roman(integer: int):
     if type(integer) != int:
         raise TypeError('Porvided argument is not of type int')
 
-    # 1-3999 both inclusive
-    if not 0 < integer < 4000:
+    # 1-4999 both inclusive
+    if not 0 < integer < 5000:
         raise ValueError(
-            'Provided argument is not in the range (1, 3999) both inclusive')
+            'Provided argument is not in the range (1, 4999) both inclusive')
 
     result = ''
 
