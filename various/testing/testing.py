@@ -86,6 +86,12 @@ from_roman_bad_types = [
     print,
 ]
 
+from_roman_bad_str_inputs = [
+    '',
+    ' ',
+    'test',
+]
+
 less_than_min = [
     0,
     -1,
@@ -144,6 +150,12 @@ class FromRoman(unittest.TestCase):
 
         for value in from_roman_bad_types:
             self.assertRaises(TypeError, from_roman, value)
+    
+    def test_valid_type_invalid_value_input(self):
+        '''from_input should return ValueError when called with any invalid str'''
+
+        for value in from_roman_bad_str_inputs:
+            self.assertRaises(ValueError, from_roman, value)
 
     def test_too_many_repeated_numerals(self):
         '''from_roman should fail with too many repeated numerals'''

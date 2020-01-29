@@ -59,7 +59,7 @@ def from_roman(roman_numeral: str):
     if type(roman_numeral) != str:
         raise TypeError('Porvided argument is not of type int')
 
-    if not roman_numeral_pattern.search(roman_numeral):
+    if roman_numeral.strip() == '' or not roman_numeral_pattern.search(roman_numeral):
         raise ValueError('Invalid Roman numeral: {}'.format(roman_numeral))
 
     result = 0
