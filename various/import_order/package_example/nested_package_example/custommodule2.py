@@ -1,0 +1,1 @@
+ANY_VAR = 'nested_package_example'

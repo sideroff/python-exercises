@@ -18,7 +18,8 @@ def both(*args, **kwargs):
     for k, v in kwargs.items():
         print('named argument {}: {}'.format(k, v))
 
-def with_mandatory(test: )
+def with_mandatory(test: string):
+    pass
 
 def main():
     # args(1, 2, 3, 4, 5, 6, 7, 8, 9)
